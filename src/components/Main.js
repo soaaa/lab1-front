@@ -1,7 +1,8 @@
 import HeadingsRow from "./HeadingsRow";
+import FilterRow from "./FilterRow";
 
-function onOrdersChanged(orders) {
-  console.log(JSON.stringify(orders));
+function print(o) {
+  console.log(JSON.stringify(o));
 }
 
 function Main() {
@@ -9,7 +10,8 @@ function Main() {
     <div className="Main">
       <table>
       <thead>
-        <HeadingsRow onChanged={onOrdersChanged} />
+        <FilterRow onChanged={print} />
+        <HeadingsRow onChanged={print} />
       </thead>
       </table>
     </div>
