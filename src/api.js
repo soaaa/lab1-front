@@ -5,5 +5,6 @@ function stubSuccess() {
 }
 
 export default {
-  delete: () => stubSuccess()
+  delete: () => stubSuccess(),
+  update: () => stubSuccess()
 }

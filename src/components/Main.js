@@ -1,6 +1,7 @@
 import HeadingsRow from "./HeadingsRow";
 import FilterRow from "./FilterRow";
-import ItemRow from "./ItemRow";
+// import ItemRow from "./ItemRow";
+import UpdateItemRow from "./UpdateItemRow";
 
 const VEHICLE = {
   id: 100,
@@ -29,9 +30,9 @@ function Main() {
         <HeadingsRow onChanged={print.bind(null, "orders")} />
       </thead>
       <tbody>
-        <ItemRow
-          onDelete={print.bind(null, "deleted")}
-          onUpdateClick={print.bind(null, "updated clicked")}
+        <UpdateItemRow
+          onUpdate={print.bind(null, "updated")}
+          onCancelClick={print.bind(null, "cancel clicked")}
           vehicle={VEHICLE}
         />
       </tbody>
