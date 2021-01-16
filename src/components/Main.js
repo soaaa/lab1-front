@@ -1,8 +1,23 @@
 import HeadingsRow from "./HeadingsRow";
 import FilterRow from "./FilterRow";
+import ItemRow from "./ItemRow";
 
-function print(o) {
-  console.log(JSON.stringify(o));
+const VEHICLE = {
+  id: 100,
+  name: "Name",
+  type: "ONE",
+  coordinates: { x: 12, y: 23 },
+  enginePower: 12.345,
+  fuelType: "TWO",
+  fuelConsumption: 999
+}
+
+function print(what, o) {
+  var text = what;
+  if (o) {
+    text += ": " + JSON.stringify(o);
+  }
+  console.log(text);
 }
 
 function Main() {
@@ -10,9 +25,16 @@ function Main() {
     <div className="Main">
       <table>
       <thead>
-        <FilterRow onChanged={print} />
-        <HeadingsRow onChanged={print} />
+        <FilterRow onChanged={print.bind(null, "filters")} />
+        <HeadingsRow onChanged={print.bind(null, "orders")} />
       </thead>
+      <tbody>
+        <ItemRow
+          onDelete={print.bind(null, "deleted")}
+          onUpdateClick={print.bind(null, "updated clicked")}
+          vehicle={VEHICLE}
+        />
+      </tbody>
       </table>
     </div>
   );
