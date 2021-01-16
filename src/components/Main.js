@@ -2,6 +2,7 @@ import HeadingsRow from "./HeadingsRow";
 import FilterRow from "./FilterRow";
 // import ItemRow from "./ItemRow";
 import UpdateItemRow from "./UpdateItemRow";
+import CreateItemRow from "./CreateItemRow";
 
 const VEHICLE = {
   id: 100,
@@ -28,6 +29,7 @@ function Main() {
       <thead>
         <FilterRow onChanged={print.bind(null, "filters")} />
         <HeadingsRow onChanged={print.bind(null, "orders")} />
+        <CreateItemRow onCreate={print.bind(null, "created")} />
       </thead>
       <tbody>
         <UpdateItemRow
