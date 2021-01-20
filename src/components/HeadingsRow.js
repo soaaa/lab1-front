@@ -10,7 +10,7 @@ import { NONE } from "../orders";
 
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "../defaults";
 
-class FilterRow extends React.Component {
+class HeadingsRow extends React.Component {
 
   constructor(props) {
     super(props);
@@ -159,4 +159,4 @@ class FilterRow extends React.Component {
   }
 }
 
-export default FilterRow;
+export default HeadingsRow;

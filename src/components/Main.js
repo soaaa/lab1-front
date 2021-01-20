@@ -1,4 +1,4 @@
-import FilterRow from "./FilterRow";
+import HeadingsRow from "./HeadingsRow";
 // import ItemRow from "./ItemRow";
 import UpdateItemRow from "./UpdateItemRow";
 import CreateItemRow from "./CreateItemRow";
@@ -25,7 +25,7 @@ function Main() {
   return (
     <div className="Main">
       <table>
-      <FilterRow 
+      <HeadingsRow 
         onFiltersChange={print.bind(null, "filters")}
         onFilter={print.bind(null, "filtered")}
       />
