@@ -60,12 +60,20 @@ class CreateItemRow extends React.Component {
     if (!callback) {
       callback = this.onInput;
     }
-    return <input onChange={callback.bind(null, prop)}/>;
+    return (
+      <input 
+        disabled={this.state.createButtonState === LOADING}
+        onChange={callback.bind(null, prop)}
+      />
+    );
   }
 
   createSelect(options, prop) {
     return (
-      <select onChange={this.onInput.bind(null, prop)}>
+      <select 
+        disabled={this.state.createButtonState === LOADING}
+        onChange={this.onInput.bind(null, prop)}
+      >
         {options.map(it => <option value={it}>{it}</option>)}
       </select>
     );
