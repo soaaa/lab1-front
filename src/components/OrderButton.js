@@ -14,7 +14,7 @@ class OrderButton extends React.Component {
   onClick = () => {
     const nextOrder = getNextOrder(this.state.order);
     this.setState({ order: nextOrder });
-    this.props.onChanged(nextOrder);
+    this.props.onChange(nextOrder);
   }
 
   createText() {

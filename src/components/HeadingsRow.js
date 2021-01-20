@@ -114,7 +114,7 @@ class HeadingsRow extends React.Component {
   }
 
   createOrderButton(column) {
-    return <OrderButton onChanged={this.onOrderChange.bind(this, column)}/>;
+    return <OrderButton onChange={this.onOrderChange.bind(this, column)}/>;
   }
 
   render() {
