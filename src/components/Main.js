@@ -26,11 +26,10 @@ function Main() {
   return (
     <div className="Main">
       <table>
-      <thead>
-        <FilterRow onChange={print.bind(null, "filters")} />
-        <HeadingsRow onChanged={print.bind(null, "orders")} />
-        <CreateItemRow onCreate={print.bind(null, "created")} />
-      </thead>
+      <FilterRow 
+        onFiltersChange={print.bind(null, "filters")}
+        onFilter={print.bind(null, "filtered")}
+      />
       <tbody>
         <UpdateItemRow
           onUpdate={print.bind(null, "updated")}
