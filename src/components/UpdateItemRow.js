@@ -30,40 +30,17 @@ class UpdateItemRow extends React.Component {
     this.setState({ okButtonState });
   }
 
-  onNameInput = (event) => {
-    this.vehicle.name = event.target.value;
-    this.validate();
-  }
-  
-  onXInput = (event) => {
-    this.vehicle.coordinates.x = event.target.value;
+  onInput = (prop, event) => {
+    this.vehicle[prop] = event.target.value;
     this.validate();
   }
 
-  onYInput = (event) => {
-    this.vehicle.coordinates.y = event.target.value;
+  onCoordInput = (prop, event) => {
+    this.vehicle.coordinates[prop] = event.target.value;
     this.validate();
   }
 
-  onTypeInput = (event) => {
-    this.vehicle.type = event.target.value;
-  }
-
-  onEnginePowerInput = (event) => {
-    this.vehicle.enginePower = event.target.value;
-    this.validate();
-  }
-
-  onFuelTypeInput = (event) => {
-    this.vehicle.fuelType = event.target.value;
-  }
-
-  onFuelConsumptionInput = (event) => {
-    this.vehicle.fuelConsumption = event.target.value;
-    this.validate();
-  }
-
-  onOkButtonClick = () => {
+  onOkClick = () => {
     this.setState({ okButtonState: LOADING });
     Api
       .update(this.vehicle)
@@ -72,49 +49,52 @@ class UpdateItemRow extends React.Component {
       .finally(() => this.setState({ okButtonState: ENABLED }));
   }
 
-  onCancelButtonClick = () => {
-    this.props.onCancelClick(this.vehicle.id);
+  onCancelClick = () => {
+    this.props.onCancel(this.vehicle.id);
   }
 
-  createInput(value, onInput) {
-    return <input value={value} onChange={onInput}></input>;
-  }
-  
-  createTypeSelect() {
+  createInput(defaultValue, prop, callback) {
+    if (!callback) {
+      callback = this.onInput;
+    }
     return (
-      <select onChange={this.onTypeInput}>
-        {TYPES.map(type => <option value={type}>{type}</option>)}
-      </select>
+      <input
+        defaultValue={defaultValue}
+        onChange={callback.bind(null, prop)}
+      />
     );
   }
 
-  createFuelTypeSelect() {
+  createSelect(options, defaultValue, prop) {
     return (
-      <select onChange={this.onFuelTypeInput}>
-        {FUEL_TYPES.map(type => <option value={type}>{type}</option>)}
+      <select 
+        defaultValue={defaultValue}
+        onChange={this.onInput.bind(null, prop)}
+      >
+        {options.map(value =>
+          <option value={value}>{value}</option>
+        )}
       </select>
     );
   }
 
   createOkButton() {
     const state = this.state.okButtonState;
-    const isEnabled = state === ENABLED;
     return (
       <button
-        disabled={!isEnabled}
-        onClick={this.onOkButtonClick}
+        disabled={state !== ENABLED}
+        onClick={this.onOkClick}
       >
-        {state === LOADING ? "Updating.." : "OK"} 
+        {state === LOADING ? "Updating.." : "OK"}
       </button>
     );
   }
 
   createCancelButton() {
-    const state = this.state.okButtonState;
     return (
-      <button
-        disabled={state === LOADING}
-        onClick={this.onCancelButtonClick}
+      <button 
+        disabled={this.state.okButtonState === LOADING}
+        onClick={this.onCancelClick}
       >
         Cancel
       </button>
@@ -127,14 +107,14 @@ class UpdateItemRow extends React.Component {
     return (
       <tr>
         <td>{vehicle.id}</td>
-        <td>{this.createInput(vehicle.name, this.onNameInput)}</td>
+        <td>{this.createInput(vehicle.name, "name")}</td>
         <td>{vehicle.creationDate}</td>
-        <td>{this.createInput(coords.x, this.onXInput)}</td>
-        <td>{this.createInput(coords.y, this.onYInput)}</td>
-        <td>{this.createTypeSelect()}</td>
-        <td>{this.createInput(vehicle.enginePower, this.onEnginePowerInput)}</td>
-        <td>{this.createFuelTypeSelect()}</td>
-        <td>{this.createInput(vehicle.fuelConsumption, this.onFuelConsumptionInput)}</td>
+        <td>{this.createInput(coords.x, "x", this.onCoordInput)}</td>
+        <td>{this.createInput(coords.y, "y", this.onCoordInput)}</td>
+        <td>{this.createSelect(TYPES, vehicle.type, "type")}</td>
+        <td>{this.createInput(vehicle.enginePower, "enginePower")}</td>
+        <td>{this.createSelect(FUEL_TYPES, vehicle.fuelType, "fuelType")}</td>
+        <td>{this.createInput(vehicle.fuelConsumption, "fuelConsumption")}</td>
         <td>{this.createOkButton()}</td>
         <td>{this.createCancelButton()}</td>
       </tr>

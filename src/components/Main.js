@@ -34,7 +34,7 @@ function Main() {
       <tbody>
         <UpdateItemRow
           onUpdate={print.bind(null, "updated")}
-          onCancelClick={print.bind(null, "cancel clicked")}
+          onCancel={print.bind(null, "cancel clicked")}
           vehicle={VEHICLE}
         />
       </tbody>
