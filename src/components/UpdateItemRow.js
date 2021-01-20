@@ -60,6 +60,7 @@ class UpdateItemRow extends React.Component {
     return (
       <input
         defaultValue={defaultValue}
+        disabled={this.state.okButtonState === LOADING}
         onChange={callback.bind(null, prop)}
       />
     );
@@ -69,6 +70,7 @@ class UpdateItemRow extends React.Component {
     return (
       <select 
         defaultValue={defaultValue}
+        disabled={this.state.okButtonState === LOADING}
         onChange={this.onInput.bind(null, prop)}
       >
         {options.map(value =>
