@@ -27,7 +27,7 @@ function Main() {
     <div className="Main">
       <table>
       <thead>
-        <FilterRow onChanged={print.bind(null, "filters")} />
+        <FilterRow onChange={print.bind(null, "filters")} />
         <HeadingsRow onChanged={print.bind(null, "orders")} />
         <CreateItemRow onCreate={print.bind(null, "created")} />
       </thead>
