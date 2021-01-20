@@ -37,40 +37,17 @@ class CreateItemRow extends React.Component {
     this.setState({ createButtonState });
   }
 
-  onNameInput = (event) => {
-    this.vehicle.name = event.target.value;
-    this.validate();
-  }
-  
-  onXInput = (event) => {
-    this.vehicle.coordinates.x = event.target.value;
+  onInput = (prop, event) => {
+    this.vehicle[prop] = event.target.value;
     this.validate();
   }
 
-  onYInput = (event) => {
-    this.vehicle.coordinates.y = event.target.value;
+  onCoordInput = (prop, event) => {
+    this.vehicle.coordinates[prop] = event.target.value;
     this.validate();
   }
 
-  onTypeInput = (event) => {
-    this.vehicle.type = event.target.value;
-  }
-
-  onEnginePowerInput = (event) => {
-    this.vehicle.enginePower = event.target.value;
-    this.validate();
-  }
-
-  onFuelTypeInput = (event) => {
-    this.vehicle.fuelType = event.target.value;
-  }
-
-  onFuelConsumptionInput = (event) => {
-    this.vehicle.fuelConsumption = event.target.value;
-    this.validate();
-  }
-
-  onCreateButtonClick = () => {
+  onCreateClick = () => {
     this.setState({ createButtonState: LOADING });
     Api
       .create(this.vehicle)
@@ -79,33 +56,27 @@ class CreateItemRow extends React.Component {
       .finally(() => this.setState({ createButtonState: ENABLED }));
   }
 
-  createInput(onInput) {
-    return <input onChange={onInput}></input>;
-  }
-  
-  createTypeSelect() {
-    return (
-      <select onChange={this.onTypeInput}>
-        {TYPES.map(type => <option value={type}>{type}</option>)}
-      </select>
-    );
+  createInput(prop, callback) {
+    if (!callback) {
+      callback = this.onInput;
+    }
+    return <input onChange={callback.bind(null, prop)}/>;
   }
 
-  createFuelTypeSelect() {
+  createSelect(options, prop) {
     return (
-      <select onChange={this.onFuelTypeInput}>
-        {FUEL_TYPES.map(type => <option value={type}>{type}</option>)}
+      <select onChange={this.onInput.bind(null, prop)}>
+        {options.map(it => <option value={it}>{it}</option>)}
       </select>
     );
-  }
+  } 
 
   createCreateButton() {
     const state = this.state.createButtonState;
-    const isEnabled = state === ENABLED;
     return (
       <button
-        disabled={!isEnabled}
-        onClick={this.onCreateButtonClick}
+        disabled={state !== ENABLED}
+        onClick={this.onCreateClick}
       >
         {state === LOADING ? "Creating.." : "Create"} 
       </button>
@@ -116,14 +87,14 @@ class CreateItemRow extends React.Component {
     return (
       <tr>
         <td></td>
-        <td>{this.createInput(this.onNameInput)}</td>
+        <td>{this.createInput("name")}</td>
         <td></td>
-        <td>{this.createInput(this.onXInput)}</td>
-        <td>{this.createInput(this.onYInput)}</td>
-        <td>{this.createTypeSelect()}</td>
-        <td>{this.createInput(this.onEnginePowerInput)}</td>
-        <td>{this.createFuelTypeSelect()}</td>
-        <td>{this.createInput(this.onFuelConsumptionInput)}</td>
+        <td>{this.createInput("x", this.onCoordInput)}</td>
+        <td>{this.createInput("y", this.onCoordInput)}</td>
+        <td>{this.createSelect(TYPES, "type")}</td>
+        <td>{this.createInput("enginePower")}</td>
+        <td>{this.createSelect(FUEL_TYPES, "fuelType")}</td>
+        <td>{this.createInput("fuelConsumption")}</td>
         <td>{this.createCreateButton()}</td>
         <td></td>
       </tr>
