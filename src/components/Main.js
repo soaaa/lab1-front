@@ -1,4 +1,3 @@
-import HeadingsRow from "./HeadingsRow";
 import FilterRow from "./FilterRow";
 // import ItemRow from "./ItemRow";
 import UpdateItemRow from "./UpdateItemRow";
