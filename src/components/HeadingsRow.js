@@ -71,7 +71,7 @@ class HeadingsRow extends React.Component {
   onOrderChange(column, order) {
     const newOrders = this.filters.orders.filter(it => it.column !== column);
     if (order !== NONE) {
-      newOrders.push({ column, order });
+      newOrders.unshift({ column, order });
     }
     this.filters.orders = newOrders;
     this.props.onFiltersChange(this.filters);
