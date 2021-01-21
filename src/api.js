@@ -88,5 +88,9 @@ export default {
     url: "/vehicle?id=" + id,
     method: "delete"
   }),
-  update: () => stubSuccess()
+  update: vehicle => axios.request({
+    url: "/vehicle",
+    method: "put",
+    data: vehicle
+  })
 }
