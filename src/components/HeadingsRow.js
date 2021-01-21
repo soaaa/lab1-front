@@ -69,12 +69,13 @@ class HeadingsRow extends React.Component {
   }
 
   onFilterClick = () => {
-    this.setState({ filterButtonState: LOADING });
     Api
       .filter(this.filters)
       .then(res => this.props.onFilter(res.data))
       .catch(err => console.log(err))
       .finally(() => this.setState({ filterButtonState: ENABLED }));
+    this.setState({ filterButtonState: LOADING });
+    this.props.onFilteringStart();
   }
 
   createInput(prop, defaultValue, type) {
