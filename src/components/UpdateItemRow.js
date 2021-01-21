@@ -13,6 +13,7 @@ class UpdateItemRow extends React.Component {
     this.creationDate = props.vehicle.creationDate;
     this.vehicle = { ...props.vehicle };
     delete this.vehicle.creationDate;
+    delete this.vehicle.coordinates.id;
 
     this.state = { okButtonState: ENABLED };
   }
