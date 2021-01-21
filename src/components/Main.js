@@ -28,16 +28,11 @@ class Main extends React.Component {
     this.setState({ vehicles });
   }
 
-  onFilteringStart = () => {
-    this.setState({ vehicles: [] });
-  }
-
   filterVehicles = () => {
     Api
       .filter(this.filters)
       .then(res => this.onFilter(res.data))
       .catch(err => console.log(err))
-    this.onFilteringStart();
   }
 
   onUpdate = () => {
@@ -73,7 +68,6 @@ class Main extends React.Component {
         <table>
         <HeadingsRow 
           onFiltersChange={it => this.filters = it}
-          onFilteringStart={this.onFilteringStart}
           onFilter={this.onFilter}
         />
         <tbody>

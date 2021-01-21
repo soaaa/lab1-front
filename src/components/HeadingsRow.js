@@ -81,7 +81,6 @@ class HeadingsRow extends React.Component {
       .catch(err => console.log(err))
       .finally(() => this.setState({ filterButtonState: ENABLED }));
     this.setState({ filterButtonState: LOADING });
-    this.props.onFilteringStart();
   }
 
   onOrderChange(column, order) {
