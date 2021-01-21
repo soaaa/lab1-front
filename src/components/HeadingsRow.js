@@ -16,13 +16,15 @@ class HeadingsRow extends React.Component {
     super(props);
 
     this.filters = {
-      id: "",
-      name: "",
-      creation_date: "",
-      type: "",
-      engine_power: "",
-      fuel_type: "",
-      fuel_consumption: "",
+      columns: {
+        id: "",
+        name: "",
+        creation_date: "",
+        type: "",
+        engine_power: "",
+        fuel_type: "",
+        fuel_consumption: ""
+      },
       orders: [],
       page: DEFAULT_PAGE,
       pageSize: DEFAULT_PAGE_SIZE 
@@ -37,9 +39,10 @@ class HeadingsRow extends React.Component {
   }
 
   isValid() {
-    if (!this.isNumberValid(this.filters.id)) return false;
-    if (!this.isNumberValid(this.filters.engine_power)) return false;
-    if (!this.isNumberValid(this.filters.fuel_consumption)) return false;
+    const columns = this.filters.columns;
+    if (!this.isNumberValid(columns.id)) return false;
+    if (!this.isNumberValid(columns.engine_power)) return false;
+    if (!this.isNumberValid(columns.fuel_consumption)) return false;
     const page = this.filters.page;
     if (!this.isNumberValid(page) || page < 1) return false;
     const pageSize = this.filters.pageSize;
@@ -55,6 +58,12 @@ class HeadingsRow extends React.Component {
 
   onInput = (prop, event) => {
     this.filters[prop] = event.target.value;
+    this.props.onFiltersChange(this.filters);
+    this.validate();
+  }
+
+  onInputColumn = (prop, event) => {
+    this.filters.columns[prop] = event.target.value;
     this.props.onFiltersChange(this.filters);
     this.validate();
   }
@@ -78,16 +87,19 @@ class HeadingsRow extends React.Component {
     this.props.onFilteringStart();
   }
 
-  createInput(prop, defaultValue, type) {
+  createInput(prop, defaultValue, type, callback) {
     const className = prop === "name" ? "text"
       : type === "date" ? "date"
       : "number";
+    if (!callback) {
+      callback = this.onInputColumn;
+    }
     return (
       <input 
         className={className}
         defaultValue={defaultValue}
         type={type} 
-        onChange={this.onInput.bind(null, prop)} 
+        onChange={callback.bind(null, prop)} 
       />
     );
   }
@@ -98,7 +110,7 @@ class HeadingsRow extends React.Component {
     const values = options.slice();
     values.unshift("");
     return (
-      <select onChange={this.onInput.bind(null, prop)}>
+      <select onChange={this.onInputColumn.bind(null, prop)}>
         {values.map((value, index) =>
           <option value={value}>{texts[index]}</option>
         )}
@@ -140,9 +152,9 @@ class HeadingsRow extends React.Component {
       </tr>
       <tr>
         <td>Page</td>
-        <td>{this.createInput("page", DEFAULT_PAGE)}</td>
+        <td>{this.createInput("page", DEFAULT_PAGE, null, this.onInput)}</td>
         <td>Page size</td>
-        <td>{this.createInput("pageSize", DEFAULT_PAGE_SIZE)}</td>
+        <td>{this.createInput("pageSize", DEFAULT_PAGE_SIZE, null, this.onInput)}</td>
         <td></td>
         <td></td>
         <td></td>
