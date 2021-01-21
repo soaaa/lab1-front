@@ -51,7 +51,13 @@ class CreateItemRow extends React.Component {
     this.setState({ createButtonState: LOADING });
     Api
       .create(this.vehicle)
-      .then(() => this.props.onCreate(this.vehicle))
+      .then(res => {
+        if (res.status === 200) {
+          this.props.onCreate();
+        } else {
+          alert(res.data);
+        }
+      })
       .catch(err => console.log(err))
       .finally(() => this.setState({ createButtonState: ENABLED }));
   }
