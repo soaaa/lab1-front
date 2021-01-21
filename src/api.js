@@ -101,5 +101,9 @@ export default {
     url: "/vehicle",
     method: "put",
     data: vehicle
+  }),
+  filterByNameSubsequence: value => axios.request({
+    url: "/vehicle/name_like?value=" + value,
+    method: "get"
   })
 }
