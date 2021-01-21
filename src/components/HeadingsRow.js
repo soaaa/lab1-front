@@ -68,16 +68,7 @@ class HeadingsRow extends React.Component {
     this.validate();
   }
 
-  onOrderChange(column, order) {
-    const newOrders = this.filters.orders.filter(it => it.column !== column);
-    if (order !== NONE) {
-      newOrders.unshift({ column, order });
-    }
-    this.filters.orders = newOrders;
-    this.props.onFiltersChange(this.filters);
-  }
-
-  onFilterClick = () => {
+  filter = () => {
     Api
       .filter(this.filters)
       .then(res => {
@@ -91,6 +82,16 @@ class HeadingsRow extends React.Component {
       .finally(() => this.setState({ filterButtonState: ENABLED }));
     this.setState({ filterButtonState: LOADING });
     this.props.onFilteringStart();
+  }
+
+  onOrderChange(column, order) {
+    const newOrders = this.filters.orders.filter(it => it.column !== column);
+    if (order !== NONE) {
+      newOrders.unshift({ column, order });
+    }
+    this.filters.orders = newOrders;
+    this.props.onFiltersChange(this.filters);
+    this.filter();
   }
 
   createInput(prop, defaultValue, type, callback) {
@@ -129,7 +130,7 @@ class HeadingsRow extends React.Component {
     return (
       <button
         disabled={state !== ENABLED}
-        onClick={this.onFilterClick}
+        onClick={this.filter}
       >
         {state === LOADING ? "Filtering.." : "Filter"}
       </button>
