@@ -62,6 +62,7 @@ class CreateItemRow extends React.Component {
     }
     return (
       <input 
+        className={prop === "name" ? "text" : "number"}
         disabled={this.state.createButtonState === LOADING}
         onChange={callback.bind(null, prop)}
       />

@@ -6,3 +6,17 @@ body {
   display: flex;
   justify-content: center;
 }
+
+input.number {
+  width: 50px;
+}
+input.text {
+  width: 80px;
+}
+input.date {
+  width: 110px;
+}
+
+td.button-col {
+  width: 120px;
+}

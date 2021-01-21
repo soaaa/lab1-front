@@ -79,8 +79,12 @@ class HeadingsRow extends React.Component {
   }
 
   createInput(prop, defaultValue, type) {
+    const className = prop === "name" ? "text"
+      : type === "date" ? "date"
+      : "number";
     return (
       <input 
+        className={className}
         defaultValue={defaultValue}
         type={type} 
         onChange={this.onInput.bind(null, prop)} 
@@ -131,6 +135,8 @@ class HeadingsRow extends React.Component {
         <td>{this.createInput("engine_power")}</td>
         <td>{this.createSelect(FUEL_TYPES, "fuel_type")}</td>
         <td>{this.createInput("fuel_consumption")}</td>
+        <td className="button-col"></td>
+        <td className="button-col"></td>
       </tr>
       <tr>
         <td>Page</td>
@@ -143,6 +149,7 @@ class HeadingsRow extends React.Component {
         <td></td>
         <td></td>
         <td>{this.createFilterButton()}</td>
+        <td></td>
       </tr>
       <tr>
         <td>ID {this.createOrderButton("id")}</td>

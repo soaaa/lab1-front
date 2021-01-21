@@ -59,6 +59,7 @@ class UpdateItemRow extends React.Component {
     }
     return (
       <input
+        className={prop === "name" ? "text" : "number"}
         defaultValue={defaultValue}
         disabled={this.state.okButtonState === LOADING}
         onChange={callback.bind(null, prop)}
