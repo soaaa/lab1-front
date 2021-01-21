@@ -109,5 +109,9 @@ export default {
   findAvgFuelConsumption: () => axios.request({
     url: "/vehicle/average_fuel_consumption",
     method: "get"
+  }),
+  findEnginePowerToCount: () => axios.request({
+    url: "/vehicle/engine_power_to_count",
+    method: "get"
   })
 }
