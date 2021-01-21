@@ -46,7 +46,13 @@ class UpdateItemRow extends React.Component {
     this.setState({ okButtonState: LOADING });
     Api
       .update(this.vehicle)
-      .then(() => this.props.onUpdate(this.vehicle))
+      .then(res => {
+        if (res.status === 200) {
+          this.props.onUpdate();
+        } else {
+          alert(res.data);
+        }
+      })
       .catch(err => console.log(err))
       .finally(() => this.setState({ okButtonState: ENABLED }));
   }
