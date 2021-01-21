@@ -105,5 +105,9 @@ export default {
   filterByNameSubsequence: value => axios.request({
     url: "/vehicle/name_like?value=" + value,
     method: "get"
+  }),
+  findAvgFuelConsumption: () => axios.request({
+    url: "/vehicle/average_fuel_consumption",
+    method: "get"
   })
 }
