@@ -1,0 +1,9 @@
+.NameSubsequence .input-sec {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.NameSubsequence .input-sec label {
+  margin-right: 10px;
+}

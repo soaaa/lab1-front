@@ -9,6 +9,7 @@ class ItemRow extends React.Component {
   constructor(props) {
     super(props);
 
+    this.buttonsEnabled = this.props.onDelete !== undefined;
     this.id = this.props.vehicle.id;
 
     this.state = { deleteButtonState: ENABLED };
@@ -33,26 +34,32 @@ class ItemRow extends React.Component {
       .finally(() => this.setState({ deleteButtonState: ENABLED }));
   }
 
-  createUpdateButton() {
+  createUpdateButtonColumn() {
+    if (!this.buttonsEnabled) return;
     return (
-      <button 
-        disabled={this.state.deleteButtonState === LOADING} 
-        onClick={this.onUpdateButtonClick}
-      >
-        Update
-      </button>
+      <td>
+        <button 
+          disabled={this.state.deleteButtonState === LOADING} 
+          onClick={this.onUpdateButtonClick}
+        >
+          Update
+        </button>
+      </td>
     );
   }
 
-  createDeleteButton() {
+  createDeleteButtonColumn() {
+    if (!this.buttonsEnabled) return;
     const state = this.state.deleteButtonState;
     return (
-      <button
-        disabled={state === LOADING}
-        onClick={this.onDeleteButtonClick}
-      >
-        {state === LOADING ? "Deleting.." : "Delete"}
-      </button>
+      <td>
+        <button
+          disabled={state === LOADING}
+          onClick={this.onDeleteButtonClick}
+        >
+          {state === LOADING ? "Deleting.." : "Delete"}
+        </button>
+      </td>
     );
   }
 
@@ -70,8 +77,8 @@ class ItemRow extends React.Component {
         <td>{vehicle.enginePower}</td>
         <td>{vehicle.fuelType}</td>
         <td>{vehicle.fuelConsumption}</td>
-        <td>{this.createUpdateButton()}</td>
-        <td>{this.createDeleteButton()}</td>
+        {this.createUpdateButtonColumn()}
+        {this.createDeleteButtonColumn()}
       </tr>
     );
   }
