@@ -5,3 +5,8 @@ export const DESC = 2;
 export function getNextOrder(order) {
   return (order + 1) % 3;
 }
+
+export function getOrderValue(order) {
+  if (order === ASC) return "asc";
+  if (order === DESC) return "desc";
+}
