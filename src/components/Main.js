@@ -1,44 +1,84 @@
+import React from "react";
+
 import HeadingsRow from "./HeadingsRow";
-// import ItemRow from "./ItemRow";
+import ItemRow from "./ItemRow";
 import UpdateItemRow from "./UpdateItemRow";
 import CreateItemRow from "./CreateItemRow";
 
-const VEHICLE = {
-  id: 100,
-  name: "Name",
-  type: "ONE",
-  coordinates: { x: 12, y: 23 },
-  enginePower: 12.345,
-  fuelType: "TWO",
-  fuelConsumption: 999
-}
+import Api from "../api";
 
-function print(what, o) {
-  var text = what;
-  if (o) {
-    text += ": " + JSON.stringify(o);
+class Main extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.filters = {};
+
+    this.state = { 
+      vehicles: [],
+      updatedItemId: null
+    };
   }
-  console.log(text);
-}
 
-function Main() {
-  return (
-    <div className="Main">
-      <table>
-      <HeadingsRow 
-        onFiltersChange={print.bind(null, "filters")}
-        onFilter={print.bind(null, "filtered")}
-      />
-      <tbody>
-        <UpdateItemRow
-          onUpdate={print.bind(null, "updated")}
-          onCancel={print.bind(null, "cancel clicked")}
-          vehicle={VEHICLE}
+  componentDidMount() {
+    this.filterVehicles();
+  }
+
+  onFilter = (vehicles) => {
+    this.setState({ vehicles });
+  }
+
+
+  filterVehicles = () => {
+    Api
+      .filter(this.filters)
+      .then(res => this.onFilter(res.data))
+      .catch(err => console.log(err))
+  }
+
+  onUpdate = () => {
+    this.setState({ updatedItemId: null });
+    this.filterVehicles();
+  }
+
+  createItemRows() {
+    return this.state.vehicles.map((vehicle, index) => {
+      if (vehicle.id === this.state.updatedItemId) {
+        return (
+          <UpdateItemRow
+            vehicle={vehicle}
+            onUpdate={this.onUpdate}
+            onCancel={() => this.setState({ updatedItemId: null })}
+          />
+        );
+      } else {
+        return (
+          <ItemRow
+            vehicle={vehicle}
+            onUpdateClick={id => this.setState({ updatedItemId: id })}
+            onDelete={this.filterVehicles}
+          />
+        );
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="Main">
+        <table>
+        <HeadingsRow 
+          onFiltersChange={it => this.filters = it}
+          onFilter={this.onFilter}
         />
-      </tbody>
-      </table>
-    </div>
-  );
+        <tbody>
+        </tbody>
+          <CreateItemRow onCreate={this.filterVehicles}/>
+          {this.createItemRows()}
+        </table>
+      </div>
+    );
+  }
 }
 
 export default Main;
