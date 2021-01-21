@@ -1,2 +1,2 @@
-export const TYPES = ["ONE", "TWO"];
-export const FUEL_TYPES = ["ONE", "TWO"];
+export const TYPES = ["CAR", "HELICOPTER", "DRONE", "BICYCLE", "CHOPPER"];
+export const FUEL_TYPES = ["ELECTRICITY", "DIESEL", "PLASMA"];
