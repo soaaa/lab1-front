@@ -80,7 +80,13 @@ class HeadingsRow extends React.Component {
   onFilterClick = () => {
     Api
       .filter(this.filters)
-      .then(res => this.props.onFilter(res.data))
+      .then(res => {
+        if (res.status === 200) {
+          this.props.onFilter(res.data);
+        } else {
+          alert(res.data);
+        }
+      })
       .catch(err => console.log(err))
       .finally(() => this.setState({ filterButtonState: ENABLED }));
     this.setState({ filterButtonState: LOADING });
