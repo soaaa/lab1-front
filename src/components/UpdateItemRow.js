@@ -10,7 +10,9 @@ class UpdateItemRow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.vehicle = props.vehicle;
+    this.creationDate = props.vehicle.creationDate;
+    this.vehicle = { ...props.vehicle };
+    delete this.vehicle.creationDate;
 
     this.state = { okButtonState: ENABLED };
   }
@@ -111,7 +113,7 @@ class UpdateItemRow extends React.Component {
       <tr>
         <td>{vehicle.id}</td>
         <td>{this.createInput(vehicle.name, "name")}</td>
-        <td>{vehicle.creationDate}</td>
+        <td>{this.creationDate}</td>
         <td>{this.createInput(coords.x, "x", this.onCoordInput)}</td>
         <td>{this.createInput(coords.y, "y", this.onCoordInput)}</td>
         <td>{this.createSelect(TYPES, vehicle.type, "type")}</td>
