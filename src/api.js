@@ -88,7 +88,11 @@ export default {
       params
     });
   },
-  create: () => stubSuccess(),
+  create: vehicle => axios.request({
+    url: "/vehicle",
+    method: "post",
+    data: vehicle
+  }),
   delete: id => axios.request({
     url: "/vehicle?id=" + id,
     method: "delete"
