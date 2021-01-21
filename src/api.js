@@ -84,6 +84,9 @@ export default {
     });
   },
   create: () => stubSuccess(),
-  delete: () => stubSuccess(),
+  delete: id => axios.request({
+    url: "/vehicle?id=" + id,
+    method: "delete"
+  }),
   update: () => stubSuccess()
 }
