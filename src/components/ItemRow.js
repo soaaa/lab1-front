@@ -22,7 +22,13 @@ class ItemRow extends React.Component {
     this.setState({ deleteButtonState: LOADING });
     Api
       .delete(this.id)
-      .then(() => this.props.onDelete(this.id))
+      .then(res => {
+        if (res.status === 200) {
+          this.props.onDelete();
+        } else {
+          alert(res.data);
+        }
+      })
       .catch(err => console.log(err))
       .finally(() => this.setState({ deleteButtonState: ENABLED }));
   }
