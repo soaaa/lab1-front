@@ -7,14 +7,18 @@ const axios = create({
   baseURL: "http://localhost:8088",
   timeout: 2000,
   transformResponse: (data) => {
-    return JSON.parse(data).map(vehicle => {
-      const { year, month, day } = vehicle.creationDate.date;
-      const creationDate = new Date(year, month - 1, day).toLocaleDateString("ru-RU");
-      return {
-        ...vehicle,
-        creationDate
-      };
-    });
+    try {
+      return JSON.parse(data).map(vehicle => {
+        const { year, month, day } = vehicle.creationDate.date;
+        const creationDate = new Date(year, month - 1, day).toLocaleDateString("ru-RU");
+        return {
+          ...vehicle,
+          creationDate
+        };
+      });
+    } catch (e) {
+      return data;
+    }
   }
 });
 
