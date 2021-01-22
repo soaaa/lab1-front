@@ -40,11 +40,11 @@ class EnginePowerToCount extends React.Component {
   render() {
     return (
       <div className="EnginePowerToCount content-sec">
-        <table>
+        <table className="table">
         <thead>
           <tr>
-            <td>Engine power</td>
-            <td>Count</td>
+            <th>Engine power</th>
+            <th>Count</th>
           </tr>
         </thead>
         <tbody>
