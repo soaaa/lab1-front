@@ -102,7 +102,34 @@ class CreateItemRow extends React.Component {
 
   render() {
     return (
-      <tr className="CreateItemRow">
+      <>
+      <tr className="subtitle-row">
+        <th>Add Vehicle</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+        <th>X</th>
+        <th>Y</th>
+        <th>Type</th>
+        <th>Engine power</th>
+        <th>Fuel type</th>
+        <th>Fuel consumption</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
         <td></td>
         <td>{this.createInput("name")}</td>
         <td></td>
@@ -115,6 +142,7 @@ class CreateItemRow extends React.Component {
         <td>{this.createCreateButton()}</td>
         <td></td>
       </tr>
+      </>
     );
   }
 }

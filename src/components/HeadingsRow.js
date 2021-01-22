@@ -1,5 +1,3 @@
-import "./css/HeadingsRow.css";
-
 import React from "react";
 
 import Api from "../api";
@@ -145,8 +143,21 @@ class HeadingsRow extends React.Component {
 
   render() {
     return (
-      <thead className="HeadingsRow">
-      <tr className="filter-row">
+      <>
+      <tr className="subtitle-row">
+        <th>Filter Vehicles</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
         <td>Page</td>
         <td>{this.createInput("page", DEFAULT_PAGE, null, this.onInput)}</td>
         <td>Page size</td>
@@ -159,7 +170,7 @@ class HeadingsRow extends React.Component {
         <td className="button-col"></td>
         <td className="button-col"></td>
       </tr>
-      <tr className="filter-row">
+      <tr className="filters-row">
         <td>{this.createInput("id")}</td>
         <td>{this.createInput("name")}</td>
         <td>{this.createInput("creation_date", null, "date")}</td>
@@ -185,7 +196,7 @@ class HeadingsRow extends React.Component {
         <th></th>
         <th></th>
       </tr>
-      </thead>
+      </>
     );
   }
 }

@@ -69,12 +69,14 @@ class Main extends React.Component {
     return (
       <div className="Main content-sec">
         <table className="table">
-        <HeadingsRow 
-          onFiltersChange={it => this.filters = it}
-          onFilter={this.onFilter}
-        />
-        <tbody>
+        <thead>
           <CreateItemRow onCreate={this.filterVehicles}/>
+          <HeadingsRow 
+            onFiltersChange={it => this.filters = it}
+            onFilter={this.onFilter}
+          />
+        </thead>
+        <tbody>
           {this.createItemRows()}
         </tbody>
         </table>
