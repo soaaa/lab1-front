@@ -68,7 +68,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main content-sec">
-        <table className="table">
+        <table className="table table-sm">
         <thead>
           <CreateItemRow onCreate={this.filterVehicles}/>
           <HeadingsRow 
