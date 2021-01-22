@@ -46,18 +46,18 @@ class NameSubsequence extends React.Component {
           <label for="value">Search</label>
           <input id="value" onChange={this.find}/>
         </div>
-        <table>
+        <table className="table">
         <thead>
           <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Creation date</td>
-            <td>X</td>
-            <td>Y</td>
-            <td>Type</td>
-            <td>Engine power</td>
-            <td>Fuel type</td>
-            <td>Fuel consumption</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Creation date</th>
+            <th>X</th>
+            <th>Y</th>
+            <th>Type</th>
+            <th>Engine power</th>
+            <th>Fuel type</th>
+            <th>Fuel consumption</th>
           </tr>
         </thead>
         <tbody>
