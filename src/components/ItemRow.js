@@ -43,7 +43,7 @@ class ItemRow extends React.Component {
           disabled={this.state.deleteButtonState === LOADING} 
           onClick={this.onUpdateButtonClick}
         >
-          Update
+          Edit 
         </button>
       </td>
     );
