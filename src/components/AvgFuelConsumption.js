@@ -33,10 +33,14 @@ class AvgFuelConsumption extends React.Component {
   render() {
     return (
       <div className="AvgFuelConsumption content-sec">
-        <table>
+        <table className="table">
+        <thead>
+        <tr>
+          <th>Average fuel consumption</th>
+        </tr>
+        </thead>
         <tbody>
           <tr>
-            <td>Average fuel consumption</td>
             <td>{this.getValueOrEmpty()}</td>
           </tr>
         </tbody>
