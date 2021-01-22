@@ -27,6 +27,7 @@ class Main extends React.Component {
   }
 
   onFilter = (vehicles) => {
+    this.setState({ vehicles: [] });
     this.setState({ vehicles });
   }
 
