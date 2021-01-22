@@ -1,6 +1,8 @@
 import React from  "react";
 
-import { NONE, ASC, DESC, getNextOrder } from "../orders";
+import { getNextOrder, getOrderSymbol } from "../orders";
+
+import { NONE, ASC, DESC } from "../orders";
 
 
 class OrderButton extends React.Component {
@@ -18,11 +20,7 @@ class OrderButton extends React.Component {
   }
 
   createText() {
-    switch (this.state.order) {
-      case NONE: return "-";
-      case ASC: return "A";
-      case DESC: return "D";
-    }
+    return getOrderSymbol(this.state.order);
   }
 
   render() {

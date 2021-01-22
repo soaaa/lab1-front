@@ -10,3 +10,11 @@ export function getOrderValue(order) {
   if (order === ASC) return "asc";
   if (order === DESC) return "desc";
 }
+
+export function getOrderSymbol(order) {
+  switch (order) {
+    case ASC: return String.fromCharCode(8593);
+    case DESC: return String.fromCharCode(8595);
+    case NONE: return "-";
+  }
+}
