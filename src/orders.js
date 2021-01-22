@@ -13,8 +13,8 @@ export function getOrderValue(order) {
 
 export function getOrderSymbol(order) {
   switch (order) {
-    case ASC: return String.fromCharCode(8593);
-    case DESC: return String.fromCharCode(8595);
+    case ASC: return String.fromCharCode(8595);
+    case DESC: return String.fromCharCode(8593);
     case NONE: return "-";
   }
 }
