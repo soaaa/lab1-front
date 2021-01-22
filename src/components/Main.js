@@ -64,7 +64,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className="Main">
+      <div className="Main content-sec">
         <table>
         <HeadingsRow 
           onFiltersChange={it => this.filters = it}

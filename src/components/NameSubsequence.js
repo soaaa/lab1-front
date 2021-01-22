@@ -41,7 +41,7 @@ class NameSubsequence extends React.Component {
 
   render() {
     return (
-      <div className="NameSubsequence">
+      <div className="NameSubsequence content-sec">
         <div className="input-sec">
           <label for="value">Search</label>
           <input id="value" onChange={this.find}/>

@@ -32,7 +32,7 @@ class AvgFuelConsumption extends React.Component {
 
   render() {
     return (
-      <div className="AvgFuelConsumption">
+      <div className="AvgFuelConsumption content-sec">
         <table>
         <tbody>
           <tr>
