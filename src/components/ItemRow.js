@@ -39,6 +39,7 @@ class ItemRow extends React.Component {
     return (
       <td>
         <button 
+          className="btn btn-primary"
           disabled={this.state.deleteButtonState === LOADING} 
           onClick={this.onUpdateButtonClick}
         >
@@ -54,6 +55,7 @@ class ItemRow extends React.Component {
     return (
       <td>
         <button
+          className="btn btn-danger"
           disabled={state === LOADING}
           onClick={this.onDeleteButtonClick}
         >

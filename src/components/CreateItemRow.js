@@ -90,6 +90,7 @@ class CreateItemRow extends React.Component {
     const state = this.state.createButtonState;
     return (
       <button
+        className="btn btn-primary"
         disabled={state !== ENABLED}
         onClick={this.onCreateClick}
       >
@@ -100,7 +101,7 @@ class CreateItemRow extends React.Component {
 
   render() {
     return (
-      <tr>
+      <tr className="CreateItemRow">
         <td></td>
         <td>{this.createInput("name")}</td>
         <td></td>

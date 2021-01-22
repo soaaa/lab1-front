@@ -94,6 +94,7 @@ class UpdateItemRow extends React.Component {
     const state = this.state.okButtonState;
     return (
       <button
+        className="btn btn-primary"
         disabled={state !== ENABLED}
         onClick={this.onOkClick}
       >
@@ -105,6 +106,7 @@ class UpdateItemRow extends React.Component {
   createCancelButton() {
     return (
       <button 
+        className="btn btn-secondary"
         disabled={this.state.okButtonState === LOADING}
         onClick={this.onCancelClick}
       >

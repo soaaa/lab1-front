@@ -26,7 +26,14 @@ class OrderButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.onClick}>{this.createText()}</button>;
+    return (
+      <button 
+        className="btn btn-primary"
+        onClick={this.onClick}
+      >
+        {this.createText()}
+      </button>
+    );
   }
 }
 

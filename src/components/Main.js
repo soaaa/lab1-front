@@ -1,3 +1,5 @@
+import "./css/Main.css";
+
 import React from "react";
 
 import HeadingsRow from "./HeadingsRow";
@@ -65,15 +67,15 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main content-sec">
-        <table>
+        <table className="table">
         <HeadingsRow 
           onFiltersChange={it => this.filters = it}
           onFilter={this.onFilter}
         />
         <tbody>
-        </tbody>
           <CreateItemRow onCreate={this.filterVehicles}/>
           {this.createItemRows()}
+        </tbody>
         </table>
       </div>
     );

@@ -1,3 +1,5 @@
+import "./css/HeadingsRow.css";
+
 import React from "react";
 
 import Api from "../api";
@@ -128,6 +130,7 @@ class HeadingsRow extends React.Component {
     const state = this.state.filterButtonState;
     return (
       <button
+        className="btn btn-primary"
         disabled={state !== ENABLED}
         onClick={this.filter}
       >
@@ -142,21 +145,8 @@ class HeadingsRow extends React.Component {
 
   render() {
     return (
-      <thead>
-      <tr>
-        <td>{this.createInput("id")}</td>
-        <td>{this.createInput("name")}</td>
-        <td>{this.createInput("creation_date", null, "date")}</td>
-        <td></td>
-        <td></td>
-        <td>{this.createSelect(TYPES, "type")}</td>
-        <td>{this.createInput("engine_power")}</td>
-        <td>{this.createSelect(FUEL_TYPES, "fuel_type")}</td>
-        <td>{this.createInput("fuel_consumption")}</td>
-        <td className="button-col"></td>
-        <td className="button-col"></td>
-      </tr>
-      <tr>
+      <thead className="HeadingsRow">
+      <tr className="filter-row">
         <td>Page</td>
         <td>{this.createInput("page", DEFAULT_PAGE, null, this.onInput)}</td>
         <td>Page size</td>
@@ -166,19 +156,34 @@ class HeadingsRow extends React.Component {
         <td></td>
         <td></td>
         <td></td>
+        <td className="button-col"></td>
+        <td className="button-col"></td>
+      </tr>
+      <tr className="filter-row">
+        <td>{this.createInput("id")}</td>
+        <td>{this.createInput("name")}</td>
+        <td>{this.createInput("creation_date", null, "date")}</td>
+        <td></td>
+        <td></td>
+        <td>{this.createSelect(TYPES, "type")}</td>
+        <td>{this.createInput("engine_power")}</td>
+        <td>{this.createSelect(FUEL_TYPES, "fuel_type")}</td>
+        <td>{this.createInput("fuel_consumption")}</td>
         <td>{this.createFilterButton()}</td>
         <td></td>
       </tr>
       <tr>
-        <td>ID {this.createOrderButton("id")}</td>
-        <td>Name {this.createOrderButton("name")}</td>
-        <td>Creation date {this.createOrderButton("creation_date")}</td>
-        <td>X</td>
-        <td>Y</td>
-        <td>Type {this.createOrderButton("type")}</td>
-        <td>Engine power {this.createOrderButton("engine_power")}</td>
-        <td>Fuel type {this.createOrderButton("fuel_type")}</td>
-        <td>Fuel consumption {this.createOrderButton("fuel_consumption")}</td>
+        <th>ID {this.createOrderButton("id")}</th>
+        <th>Name {this.createOrderButton("name")}</th>
+        <th>Creation date {this.createOrderButton("creation_date")}</th>
+        <th>X</th>
+        <th>Y</th>
+        <th>Type {this.createOrderButton("type")}</th>
+        <th>Engine power {this.createOrderButton("engine_power")}</th>
+        <th>Fuel type {this.createOrderButton("fuel_type")}</th>
+        <th>Fuel consumption {this.createOrderButton("fuel_consumption")}</th>
+        <th></th>
+        <th></th>
       </tr>
       </thead>
     );
