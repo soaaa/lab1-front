@@ -71,7 +71,7 @@ class ItemRow extends React.Component {
     return (
       <tr>
         <td>{vehicle.id}</td>
-        <td>{vehicle.name}</td>
+        <td className="name">{vehicle.name}</td>
         <td>{vehicle.creationDate}</td>
         <td>{coords.x}</td>
         <td>{coords.y}</td>
