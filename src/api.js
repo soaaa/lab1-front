@@ -98,7 +98,7 @@ export default {
     method: "delete"
   }),
   update: vehicle => axios.request({
-    url: "/vehicle",
+    url: "/vehicle?id=" + vehicle.id,
     method: "put",
     data: vehicle
   }),
