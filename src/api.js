@@ -94,11 +94,11 @@ export default {
     data: vehicle
   }),
   delete: id => axios.request({
-    url: "/vehicle?id=" + id,
+    url: "/vehicle/" + id,
     method: "delete"
   }),
   update: vehicle => axios.request({
-    url: "/vehicle?id=" + vehicle.id,
+    url: "/vehicle/" + vehicle.id,
     method: "put",
     data: vehicle
   }),
