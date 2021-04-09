@@ -5,11 +5,13 @@ import Main from "./Main";
 import NameSubsequence from "./NameSubsequence";
 import AvgFuelConsumption from "./AvgFuelConsumption";
 import EnginePowerToCount from "./EnginePowerToCount";
+import SearchByType from "./SearchByType";
 
 const BLOCK_MAIN = "MAIN";
 const BLOCK_NAME_SUBSEQ = "NAME_SUBSEQ";
 const BLOCK_AVG_FUEL_CONS = "AVG_FUEL_CONS";
 const BLOCK_ENG_POW_TO_COUNT = "ENG_POW_TO_COUNT";
+const BLOCK_SEARCH_BY_TYPE = "SEARCH_BY_TYPE";
 
 class App extends React.Component {
 
@@ -22,11 +24,13 @@ class App extends React.Component {
     this.onNameSubseqTabClick = this.onTabClick.bind(this, null, BLOCK_NAME_SUBSEQ);
     this.onAvgFuelConsTabClick = this.onTabClick.bind(this, null, BLOCK_AVG_FUEL_CONS);
     this.onEngPowToCountTabClick = this.onTabClick.bind(this, null, BLOCK_ENG_POW_TO_COUNT);
+    this.onSearchByTypeTabClick = this.onTabClick.bind(this, null, BLOCK_SEARCH_BY_TYPE);
 
     this.createMainTabClass = this.createTabClass.bind(this, BLOCK_MAIN);
     this.createNameSubseqTabClass = this.createTabClass.bind(this, BLOCK_NAME_SUBSEQ);
     this.createAvgFuelConsTabClass = this.createTabClass.bind(this, BLOCK_AVG_FUEL_CONS);
     this.createEngPowToCountTabClass = this.createTabClass.bind(this, BLOCK_ENG_POW_TO_COUNT);
+    this.createSearchByTypeTabClass = this.createTabClass.bind(this, BLOCK_SEARCH_BY_TYPE);
   }
 
   createContentBlock() {
@@ -35,6 +39,7 @@ class App extends React.Component {
       case BLOCK_NAME_SUBSEQ: return <NameSubsequence />;
       case BLOCK_AVG_FUEL_CONS: return <AvgFuelConsumption />;
       case BLOCK_ENG_POW_TO_COUNT: return <EnginePowerToCount />;
+      case BLOCK_SEARCH_BY_TYPE: return <SearchByType />;
     }
   }
 
@@ -75,6 +80,12 @@ class App extends React.Component {
             onClick={this.onEngPowToCountTabClick}
           >
             Engine power to count
+          </div>
+          <div 
+            className={this.createSearchByTypeTabClass()}
+            onClick={this.onSearchByTypeTabClick}
+          >
+            Search by type
           </div>
         </div>
         {this.createContentBlock()}
