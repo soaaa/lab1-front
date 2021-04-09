@@ -6,21 +6,7 @@ import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "./defaults";
 const axios = create({
   baseURL: "http://localhost:8088",
   timeout: 2000,
-  validateStatus: status => status < 500,
-  transformResponse: (data) => {
-    try {
-      return JSON.parse(data).map(vehicle => {
-        const { year, month, day } = vehicle.creationDate.date;
-        const creationDate = new Date(year, month - 1, day).toLocaleDateString("ru-RU");
-        return {
-          ...vehicle,
-          creationDate
-        };
-      });
-    } catch (e) {
-      return data;
-    }
-  }
+  validateStatus: status => status < 500
 });
 
 function stubSuccess(data) {
