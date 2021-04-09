@@ -99,5 +99,9 @@ export default {
   findEnginePowerToCount: () => axios.request({
     url: "/vehicle/engine_power_to_count",
     method: "get"
+  }),
+  searchByType: type => axios.request({
+    url: "/shop/search/by-type/" + type,
+    method: "get"
   })
 }
