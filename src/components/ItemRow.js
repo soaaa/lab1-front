@@ -4,6 +4,8 @@ import { ENABLED, LOADING } from "../button-states";
 
 import Api from "../api";
 
+import { formatDate } from "../date-format";
+
 class ItemRow extends React.Component {
 
   constructor(props) {
@@ -72,7 +74,7 @@ class ItemRow extends React.Component {
       <tr>
         <td>{vehicle.id}</td>
         <td className="name">{vehicle.name}</td>
-        <td>{vehicle.creationDate}</td>
+        <td>{formatDate(vehicle.creationDate)}</td>
         <td>{coords.x}</td>
         <td>{coords.y}</td>
         <td>{vehicle.type}</td>
