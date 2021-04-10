@@ -4,7 +4,7 @@ import ItemRow from "./ItemRow";
 
 import Api from "../api";
 
-class NameSubsequence extends React.Component {
+class SearchByName extends React.Component {
 
   constructor(props) {
     super(props);
@@ -67,4 +67,4 @@ class NameSubsequence extends React.Component {
   }
 }
 
-export default NameSubsequence;
+export default SearchByName;
