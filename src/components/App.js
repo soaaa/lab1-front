@@ -6,12 +6,14 @@ import NameSubsequence from "./NameSubsequence";
 import AvgFuelConsumption from "./AvgFuelConsumption";
 import EnginePowerToCount from "./EnginePowerToCount";
 import SearchByType from "./SearchByType";
+import SearchByEnginePower from "./SearchByEnginePower";
 
 const BLOCK_MAIN = "MAIN";
 const BLOCK_NAME_SUBSEQ = "NAME_SUBSEQ";
 const BLOCK_AVG_FUEL_CONS = "AVG_FUEL_CONS";
 const BLOCK_ENG_POW_TO_COUNT = "ENG_POW_TO_COUNT";
 const BLOCK_SEARCH_BY_TYPE = "SEARCH_BY_TYPE";
+const BLOCK_SEARCH_BY_ENGINE_POWER = "SEARCH_BY_ENGINE_POWER"
 
 class App extends React.Component {
 
@@ -25,12 +27,14 @@ class App extends React.Component {
     this.onAvgFuelConsTabClick = this.onTabClick.bind(this, null, BLOCK_AVG_FUEL_CONS);
     this.onEngPowToCountTabClick = this.onTabClick.bind(this, null, BLOCK_ENG_POW_TO_COUNT);
     this.onSearchByTypeTabClick = this.onTabClick.bind(this, null, BLOCK_SEARCH_BY_TYPE);
+    this.onSearchByEnginePowerTabClick = this.onTabClick.bind(this, null, BLOCK_SEARCH_BY_ENGINE_POWER);
 
     this.createMainTabClass = this.createTabClass.bind(this, BLOCK_MAIN);
     this.createNameSubseqTabClass = this.createTabClass.bind(this, BLOCK_NAME_SUBSEQ);
     this.createAvgFuelConsTabClass = this.createTabClass.bind(this, BLOCK_AVG_FUEL_CONS);
     this.createEngPowToCountTabClass = this.createTabClass.bind(this, BLOCK_ENG_POW_TO_COUNT);
     this.createSearchByTypeTabClass = this.createTabClass.bind(this, BLOCK_SEARCH_BY_TYPE);
+    this.createSearchByEnginePowerTabClass = this.createTabClass.bind(this, BLOCK_SEARCH_BY_ENGINE_POWER);
   }
 
   createContentBlock() {
@@ -40,6 +44,7 @@ class App extends React.Component {
       case BLOCK_AVG_FUEL_CONS: return <AvgFuelConsumption />;
       case BLOCK_ENG_POW_TO_COUNT: return <EnginePowerToCount />;
       case BLOCK_SEARCH_BY_TYPE: return <SearchByType />;
+      case BLOCK_SEARCH_BY_ENGINE_POWER: return <SearchByEnginePower />;
     }
   }
 
@@ -86,6 +91,12 @@ class App extends React.Component {
             onClick={this.onSearchByTypeTabClick}
           >
             Search by type
+          </div>
+          <div 
+            className={this.createSearchByEnginePowerTabClass()}
+            onClick={this.onSearchByEnginePowerTabClick}
+          >
+            Search by engine power
           </div>
         </div>
         {this.createContentBlock()}
