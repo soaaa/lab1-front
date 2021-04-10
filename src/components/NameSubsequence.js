@@ -1,5 +1,3 @@
-import "./css/NameSubsequence.css";
-
 import React from "react";
 
 import ItemRow from "./ItemRow";
@@ -41,7 +39,7 @@ class NameSubsequence extends React.Component {
 
   render() {
     return (
-      <div className="NameSubsequence content-sec">
+      <div className="content-sec">
         <div className="input-sec">
           <label for="value">Search</label>
           <input id="value" onChange={this.find}/>
