@@ -103,5 +103,9 @@ export default {
   searchByType: type => axios.request({
     url: "/shop/search/by-type/" + type,
     method: "get"
+  }),
+  searchByEnginePower: (from, to) => axios.request({
+    url: "/shop/search/by-engine-power/" + from + "/" + to,
+    method: "get"
   })
 }
