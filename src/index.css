@@ -28,3 +28,13 @@ td.name {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.input-sec {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-sec label {
+  margin-right: 10px;
+}
