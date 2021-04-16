@@ -2,8 +2,7 @@ import React from  "react";
 
 import { getNextOrder, getOrderSymbol } from "../orders";
 
-import { NONE, ASC, DESC } from "../orders";
-
+import { NONE } from "../orders";
 
 class OrderButton extends React.Component {
 
