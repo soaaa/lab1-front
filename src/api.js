@@ -3,8 +3,10 @@ import { create } from "axios";
 import { ASC, DESC, NONE, getOrderValue } from "./orders";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "./defaults";
 
+const VEHICLE_URL = "https://localhost:4555/vehicle"
+const SHOP_URL = "https://localhost:4556/shop"
+
 const axios = create({
-  baseURL: "http://localhost:8088",
   timeout: 2000,
   validateStatus: status => status < 500
 });
@@ -69,43 +71,43 @@ export default {
     params.append("page_size", pageSize);
 
     return axios.request({
-      url: "/vehicle",
+      url: VEHICLE_URL,
       method: "get",
       params
     });
   },
   create: vehicle => axios.request({
-    url: "/vehicle",
+    url: VEHICLE_URL,
     method: "post",
     data: vehicle
   }),
   delete: id => axios.request({
-    url: "/vehicle/" + id,
+    url: VEHICLE_URL + "/" + id,
     method: "delete"
   }),
   update: vehicle => axios.request({
-    url: "/vehicle/" + vehicle.id,
+    url: VEHICLE_URL + "/" + vehicle.id,
     method: "put",
     data: vehicle
   }),
   filterByNameSubsequence: value => axios.request({
-    url: "/vehicle/name_like?value=" + value,
+    url: VEHICLE_URL + "/name_like?value=" + value,
     method: "get"
   }),
   findAvgFuelConsumption: () => axios.request({
-    url: "/vehicle/average_fuel_consumption",
+    url: VEHICLE_URL + "/average_fuel_consumption",
     method: "get"
   }),
   findEnginePowerToCount: () => axios.request({
-    url: "/vehicle/engine_power_to_count",
+    url: VEHICLE_URL + "/engine_power_to_count",
     method: "get"
   }),
   searchByType: type => axios.request({
-    url: "/shop/search/by-type/" + type,
+    url: SHOP_URL + "/search/by-type/" + type,
     method: "get"
   }),
   searchByEnginePower: (from, to) => axios.request({
-    url: "/shop/search/by-engine-power/" + from + "/" + to,
+    url: SHOP_URL + "/search/by-engine-power/" + from + "/" + to,
     method: "get"
   })
 }
