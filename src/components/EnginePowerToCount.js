@@ -17,7 +17,7 @@ class EnginePowerToCount extends React.Component {
       .findEnginePowerToCount()
       .then(res => {
         if (res.status === 200) {
-          this.setState({ values: JSON.parse(res.data) });
+          this.setState({ values: res.data });
         } else {
           alert(res.data);
         }
